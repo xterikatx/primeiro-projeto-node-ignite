@@ -121,10 +121,17 @@ app.put("/account", verifyIfExistsAccountCPF, (req, res) => {
 });
 
 app.get("/account", verifyIfExistsAccountCPF, (req, res) => {
-    const { customer } = req;
-  
-  
-    return res.send(customer);
-  });
+  const { customer } = req;
+
+  return res.send(customer);
+});
+
+app.delete("/account", verifyIfExistsAccountCPF, (req, res) => {
+  const { customer } = req;
+
+  customers.splice(customer, 1);
+
+  return res.status(200).json(customers);
+});
 
 app.listen(3333);
